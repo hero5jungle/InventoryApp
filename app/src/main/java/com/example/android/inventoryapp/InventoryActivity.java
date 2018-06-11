@@ -33,9 +33,8 @@ public class InventoryActivity extends AppCompatActivity {
 
         long newRowId = db.insert(InventoryEntry.TABLE_NAME, null, values);
     }
-
-
-    private TextView queryData(){
+    
+    private Cursor queryData(){
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         String[] projection = {
@@ -88,6 +87,6 @@ public class InventoryActivity extends AppCompatActivity {
                     currentSupplierPhone));
         }
         cursor.close();
-        return displayView;
+        return cursor;
     }
 }
