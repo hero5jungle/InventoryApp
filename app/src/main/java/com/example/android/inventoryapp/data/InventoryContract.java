@@ -15,5 +15,4 @@ public final class InventoryContract {
         public final static String COLUMN_SUPPLIER_PHONE_NUMBER = "supplier_phone_number";
 
     }
-
 }

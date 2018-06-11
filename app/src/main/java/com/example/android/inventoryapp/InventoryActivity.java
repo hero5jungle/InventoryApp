@@ -24,7 +24,7 @@ public class InventoryActivity extends AppCompatActivity {
         queryData();
     }
 
-    private void insertData(){
+    private void insertData() {
         // Insert into database.
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
@@ -32,13 +32,13 @@ public class InventoryActivity extends AppCompatActivity {
         values.put(InventoryEntry.COLUMN_PRODUCT_NAME, "Laptop");
         values.put(InventoryEntry.COLUMN_PRICE, 500);
         values.put(InventoryEntry.COLUMN_QUANTITY, 1);
-        values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, "Mark");
+        values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, "Dell");
         values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE_NUMBER, "714-213-5486");
 
         long newRowId = db.insert(InventoryEntry.TABLE_NAME, null, values);
     }
 
-    private Cursor queryData(){
+    private Cursor queryData() {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         String[] projection = {
@@ -58,11 +58,11 @@ public class InventoryActivity extends AppCompatActivity {
 
         TextView displayView = findViewById(R.id.text_view);
         displayView.append(InventoryEntry._ID + " - " +
-                    InventoryEntry.COLUMN_PRODUCT_NAME + " - " +
-                    InventoryEntry.COLUMN_PRICE + " - " +
-                    InventoryEntry.COLUMN_QUANTITY + " - " +
-                    InventoryEntry.COLUMN_SUPPLIER_NAME + " - " +
-                    InventoryEntry.COLUMN_SUPPLIER_PHONE_NUMBER + "\n");
+                InventoryEntry.COLUMN_PRODUCT_NAME + " - " +
+                InventoryEntry.COLUMN_PRICE + " - " +
+                InventoryEntry.COLUMN_QUANTITY + " - " +
+                InventoryEntry.COLUMN_SUPPLIER_NAME + " - " +
+                InventoryEntry.COLUMN_SUPPLIER_PHONE_NUMBER + "\n");
 
 
         int idColumnIndex = cursor.getColumnIndex(InventoryEntry._ID);
