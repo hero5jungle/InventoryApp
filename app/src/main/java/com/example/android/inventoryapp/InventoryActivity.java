@@ -1,16 +1,14 @@
 package com.example.android.inventoryapp;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.android.inventoryapp.data.InventoryContract;
 import com.example.android.inventoryapp.data.InventoryDbHelper;
 import com.example.android.inventoryapp.data.InventoryContract.InventoryEntry;
-
-import org.w3c.dom.Text;
 
 public class InventoryActivity extends AppCompatActivity {
 
@@ -24,9 +22,20 @@ public class InventoryActivity extends AppCompatActivity {
 
     private void insertData(){
         // Insert into database.
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(InventoryEntry.COLUMN_PRODUCT_NAME, "Laptop");
+        values.put(InventoryEntry.COLUMN_PRICE, 500);
+        values.put(InventoryEntry.COLUMN_QUANTITY, 1);
+        values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, "Mark");
+        values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE_NUMBER, 714);
+
+        long newRowId = db.insert(InventoryEntry.TABLE_NAME, null, values);
     }
 
-    private Cursor queryData(){
+
+    private TextView queryData(){
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         String[] projection = {
@@ -79,6 +88,6 @@ public class InventoryActivity extends AppCompatActivity {
                     currentSupplierPhone));
         }
         cursor.close();
-
+        return displayView;
     }
 }
