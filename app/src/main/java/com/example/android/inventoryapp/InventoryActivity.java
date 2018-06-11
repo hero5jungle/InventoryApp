@@ -33,7 +33,7 @@ public class InventoryActivity extends AppCompatActivity {
 
         long newRowId = db.insert(InventoryEntry.TABLE_NAME, null, values);
     }
-    
+
     private Cursor queryData(){
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
@@ -52,7 +52,7 @@ public class InventoryActivity extends AppCompatActivity {
                 null, null,
                 null);
 
-        TextView displayView = (TextView) findViewById(R.id.text_view);
+        TextView displayView = findViewById(R.id.text_view);
         displayView.append(InventoryEntry._ID + " - " +
                     InventoryEntry.COLUMN_PRODUCT_NAME + " - " +
                     InventoryEntry.COLUMN_PRICE + " - " +
@@ -70,8 +70,7 @@ public class InventoryActivity extends AppCompatActivity {
 
         // Iterate through all the returned rows in the cursor
         while (cursor.moveToNext()) {
-            // Use that index to extract the String or Int value of the word
-            // at the current row the cursor is on.
+
             int currentID = cursor.getInt(idColumnIndex);
             String currentName = cursor.getString(nameColumnIndex);
             int currentPrice = cursor.getInt(priceColumnIndex);
