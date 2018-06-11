@@ -56,7 +56,7 @@ public class InventoryActivity extends AppCompatActivity {
                 null, null,
                 null);
 
-        TextView displayView = findViewById(R.id.text_view);
+        TextView displayView = findViewById(R.id.data_text);
         displayView.append(InventoryEntry._ID + " - " +
                 InventoryEntry.COLUMN_PRODUCT_NAME + " - " +
                 InventoryEntry.COLUMN_PRICE + " - " +
