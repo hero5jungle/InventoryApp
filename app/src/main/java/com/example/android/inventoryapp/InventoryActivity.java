@@ -18,6 +18,10 @@ public class InventoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mDbHelper = new InventoryDbHelper(this);
+        insertData();
+        queryData();
     }
 
     private void insertData(){
@@ -29,7 +33,7 @@ public class InventoryActivity extends AppCompatActivity {
         values.put(InventoryEntry.COLUMN_PRICE, 500);
         values.put(InventoryEntry.COLUMN_QUANTITY, 1);
         values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, "Mark");
-        values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE_NUMBER, 714);
+        values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE_NUMBER, "714-213-5486");
 
         long newRowId = db.insert(InventoryEntry.TABLE_NAME, null, values);
     }
@@ -76,7 +80,7 @@ public class InventoryActivity extends AppCompatActivity {
             int currentPrice = cursor.getInt(priceColumnIndex);
             int currentQuantity = cursor.getInt(quantityColumnIndex);
             String currentSupplierName = cursor.getString(supplierNameColumnIndex);
-            int currentSupplierPhone = cursor.getInt(supplierPhoneColumnIndex);
+            String currentSupplierPhone = cursor.getString(supplierPhoneColumnIndex);
             // Display the values from each column of the current row in the cursor in the TextView
             displayView.append(("\n" + currentID + " - " +
                     currentName + " - " +
