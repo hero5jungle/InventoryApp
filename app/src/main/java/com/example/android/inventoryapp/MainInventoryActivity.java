@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.example.android.inventoryapp.data.InventoryDbHelper;
 import com.example.android.inventoryapp.data.InventoryContract.InventoryEntry;
 
-public class InventoryActivity extends AppCompatActivity {
+public class MainInventoryActivity extends AppCompatActivity {
 
     private InventoryDbHelper mDbHelper;
 
