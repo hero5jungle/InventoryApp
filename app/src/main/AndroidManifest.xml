@@ -17,12 +17,21 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ProductDetails"
+            android:label="Product Details"
+            android:parentActivityName=".MainInventoryActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainInventoryActivity" />
+        </activity>
+
         <provider
             android:name=".data.InventoryProvider"
             android:authorities="com.example.android.inventory"
             android:exported="false" />
 
-        <activity android:name=".ProductDetails"></activity>
+
     </application>
 
 </manifest>
