@@ -14,45 +14,35 @@
             android:id="@+id/detail_product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textColor="#000000"
-            android:textSize="20sp"
+            style="@style/ProductDetailText"
             tools:text="Name" />
 
         <TextView
             android:id="@+id/detail_product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textColor="#000000"
-            android:textSize="20sp"
+            style="@style/ProductDetailText"
             tools:text="Price" />
 
         <TextView
             android:id="@+id/detail_product_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textColor="#000000"
-            android:textSize="20sp"
+            style="@style/ProductDetailText"
             tools:text="Quantity" />
 
         <TextView
             android:id="@+id/detail_supplier_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textColor="#000000"
-            android:textSize="20sp"
+            style="@style/ProductDetailText"
             tools:text="Supplier Name" />
 
         <TextView
             android:id="@+id/detail_supplier_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textColor="#000000"
-            android:textSize="20sp"
+            style="@style/ProductDetailText"
             tools:text="Supplier Phone Number" />
     </LinearLayout>
 
