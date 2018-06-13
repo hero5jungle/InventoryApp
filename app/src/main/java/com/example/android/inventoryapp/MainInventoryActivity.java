@@ -46,7 +46,6 @@ public class MainInventoryActivity extends AppCompatActivity implements
         mCursorAdapter = new InventoryCursorAdapter(this, null);
         inventoryListView.setAdapter(mCursorAdapter);
 
-        // Kick off the loader
         getLoaderManager().initLoader(INVENTORY_LOADER, null, this);
     }
 
