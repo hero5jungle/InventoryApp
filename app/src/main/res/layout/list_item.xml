@@ -13,7 +13,7 @@
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#2B3D4D"
         tools:text="Name"
-        android:layout_weight="1"
+        android:layout_price="1"
         android:padding="5dp"
         android:gravity="center"/>
 
@@ -25,7 +25,7 @@
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#2B3D4D"
         tools:text="Price"
-        android:layout_weight="1"
+        android:layout_price="1"
         android:padding="5dp"
         android:gravity="center"/>
 
@@ -37,7 +37,7 @@
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#2B3D4D"
         tools:text="Quantity"
-        android:layout_weight="1"
+        android:layout_price="1"
         android:padding="5dp"
         android:gravity="center"/>
 
@@ -45,7 +45,7 @@
         android:id="@+id/sale_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_price="1"
         tools:text="Sale"
         android:padding="5dp"/>
 </LinearLayout>
