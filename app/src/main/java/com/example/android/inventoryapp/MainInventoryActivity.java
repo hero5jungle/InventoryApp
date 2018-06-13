@@ -1,27 +1,41 @@
 package com.example.android.inventoryapp;
 
+import android.app.LoaderManager;
 import android.content.ContentValues;
+import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.FloatingActionButton;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
-
-import com.example.android.inventoryapp.data.InventoryDbHelper;
 import com.example.android.inventoryapp.data.InventoryContract.InventoryEntry;
+import com.example.android.inventoryapp.data.InventoryDbHelper;
 
-public class MainInventoryActivity extends AppCompatActivity {
+public class MainInventoryActivity extends AppCompatActivity implements
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     private InventoryDbHelper mDbHelper;
+    private static final int INVENTORY_LOADER = 0;
+    InventoryCursorAdapter mCursorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mDbHelper = new InventoryDbHelper(this);
-        insertData();
-        queryData();
+        // Setup FAB to open EditorActivity
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainInventoryActivity.this, EditorActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void insertData() {
@@ -56,21 +70,17 @@ public class MainInventoryActivity extends AppCompatActivity {
                 null, null,
                 null);
 
-        TextView displayView = findViewById(R.id.data_text);
+        TextView displayView = findViewById(R.id.list);
         displayView.append(InventoryEntry._ID + " - " +
                 InventoryEntry.COLUMN_PRODUCT_NAME + " - " +
                 InventoryEntry.COLUMN_PRICE + " - " +
-                InventoryEntry.COLUMN_QUANTITY + " - " +
-                InventoryEntry.COLUMN_SUPPLIER_NAME + " - " +
-                InventoryEntry.COLUMN_SUPPLIER_PHONE_NUMBER + "\n");
+                InventoryEntry.COLUMN_QUANTITY + "\n");
 
 
         int idColumnIndex = cursor.getColumnIndex(InventoryEntry._ID);
         int nameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_NAME);
         int priceColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRICE);
         int quantityColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_QUANTITY);
-        int supplierNameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_SUPPLIER_NAME);
-        int supplierPhoneColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_SUPPLIER_PHONE_NUMBER);
 
         // Iterate through all the returned rows in the cursor
         while (cursor.moveToNext()) {
@@ -79,17 +89,29 @@ public class MainInventoryActivity extends AppCompatActivity {
             String currentName = cursor.getString(nameColumnIndex);
             int currentPrice = cursor.getInt(priceColumnIndex);
             int currentQuantity = cursor.getInt(quantityColumnIndex);
-            String currentSupplierName = cursor.getString(supplierNameColumnIndex);
-            String currentSupplierPhone = cursor.getString(supplierPhoneColumnIndex);
+
             // Display the values from each column of the current row in the cursor in the TextView
             displayView.append(("\n" + currentID + " - " +
                     currentName + " - " +
                     currentPrice + " - " +
-                    currentQuantity + " - " +
-                    currentSupplierName + " - " +
-                    currentSupplierPhone));
+                    currentQuantity));
         }
         cursor.close();
         return cursor;
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
     }
 }
