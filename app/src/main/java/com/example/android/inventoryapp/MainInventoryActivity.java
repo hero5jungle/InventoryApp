@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.example.android.inventoryapp.data.InventoryContract.InventoryEntry;
 import com.example.android.inventoryapp.data.InventoryDbHelper;
 
@@ -36,20 +38,25 @@ public class MainInventoryActivity extends AppCompatActivity implements
                 startActivity(intent);
             }
         });
+
+        ListView inventoryListView = findViewById(R.id.list);
+        View emptyView = findViewById(R.id.empty_view);
+        inventoryListView.setEmptyView(emptyView);
+
+        mCursorAdapter = new InventoryCursorAdapter(this, null);
+        inventoryListView.setAdapter(mCursorAdapter);
+
+        // Kick off the loader
+        getLoaderManager().initLoader(INVENTORY_LOADER, null, this);
     }
 
     private void insertData() {
-        // Insert into database.
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(InventoryEntry.COLUMN_PRODUCT_NAME, "Laptop");
         values.put(InventoryEntry.COLUMN_PRICE, 500);
         values.put(InventoryEntry.COLUMN_QUANTITY, 1);
-        values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, "Dell");
-        values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE_NUMBER, "714-213-5486");
 
-        long newRowId = db.insert(InventoryEntry.TABLE_NAME, null, values);
+        Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
     }
 
     private Cursor queryData() {
@@ -107,11 +114,11 @@ public class MainInventoryActivity extends AppCompatActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-
+        mCursorAdapter.swapCursor(data);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-
+        mCursorAdapter.swapCursor(null);
     }
 }
