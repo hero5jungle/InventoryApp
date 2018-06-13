@@ -17,7 +17,7 @@
         android:layout_gravity="end|bottom"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:src="@drawable/add_playlist_android"
+        android:src="@drawable/ic_action_add"
         android:layout_margin="16dp"
         android:layout_alignParentEnd="true" />
 
