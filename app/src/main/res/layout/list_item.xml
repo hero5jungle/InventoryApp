@@ -8,37 +8,44 @@
     <TextView
         android:id="@+id/product_name"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:fontFamily="sans-serif-medium"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#2B3D4D"
         tools:text="Name"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/product_price"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:fontFamily="sans-serif-medium"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#2B3D4D"
         tools:text="Price"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/product_quantity"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:fontFamily="sans-serif-medium"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#2B3D4D"
         tools:text="Quantity"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:gravity="center"/>
 
     <Button
         android:id="@+id/sale_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        tools:text="Sale" />
+        tools:text="Sale"
+        android:padding="5dp"/>
 </LinearLayout>
