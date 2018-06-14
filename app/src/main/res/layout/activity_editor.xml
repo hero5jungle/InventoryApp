@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,21 +13,22 @@
         android:orientation="horizontal">
 
         <TextView
-            android:text="Product Name"
             style="@style/CategoryStyle"
-            android:padding="8dp"/>
+            android:padding="8dp"
+            android:text="@string/product_name" />
 
         <RelativeLayout
-            android:layout_height="wrap_content"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:paddingLeft="4dp">
+            android:paddingLeft="4dp"
+            android:paddingStart="4dp">
 
             <EditText
                 android:id="@+id/edit_inventory_name"
-                android:hint="Name"
-                android:inputType="textCapWords"
-                style="@style/EditorFieldStyle" />
+                style="@style/EditorFieldStyle"
+                android:hint="@string/name"
+                android:inputType="textCapWords" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -39,26 +39,27 @@
         android:orientation="horizontal">
 
         <TextView
-            android:text="Product Price"
             style="@style/CategoryStyle"
-            android:padding="8dp"/>
+            android:padding="8dp"
+            android:text="@string/product_price" />
 
         <RelativeLayout
-            android:layout_height="wrap_content"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:paddingLeft="4dp">
+            android:paddingLeft="4dp"
+            android:paddingStart="4dp">
 
             <EditText
                 android:id="@+id/edit_inventory_price"
-                android:hint="Price (round number)"
-                android:inputType="number"
-                style="@style/EditorFieldStyle" />
+                style="@style/EditorFieldStyle"
+                android:hint="@string/price_round_number"
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/label_dollar_currency"
-                android:text="dollars"
-                style="@style/EditorUnitsStyle"/>
+                style="@style/EditorUnitsStyle"
+                android:text="@string/dollars" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -69,35 +70,40 @@
         android:orientation="horizontal">
 
         <TextView
-            android:text="Product Quantity"
             style="@style/CategoryStyle"
-            android:padding="8dp"/>
+            android:padding="8dp"
+            android:text="@string/product_quantity" />
 
         <RelativeLayout
-            android:layout_height="wrap_content"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:paddingLeft="4dp">
+            android:paddingLeft="4dp"
+            android:paddingStart="4dp">
 
             <EditText
                 android:id="@+id/edit_inventory_quantity"
-                android:hint="Quantity"
-                android:inputType="number"
-                style="@style/EditorFieldStyle" />
+                style="@style/EditorFieldStyle"
+                android:hint="@string/quantity"
+                android:inputType="number" />
 
             <ImageButton
+                android:id="@+id/increment_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_add"
                 android:layout_toLeftOf="@id/decrement_button"
-                android:id="@+id/increment_button"/>
+                android:layout_toStartOf="@id/decrement_button"
+                android:src="@drawable/ic_add"
+                android:contentDescription="@string/increase_qyt_by_1" />
 
             <ImageButton
+                android:id="@+id/decrement_button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
-                android:src="@drawable/ic_remove"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:id="@+id/decrement_button"/>
+                android:src="@drawable/ic_remove"
+                android:contentDescription="@string/subtract_qyt_by_1" />
 
         </RelativeLayout>
     </LinearLayout>
@@ -109,21 +115,21 @@
         android:orientation="horizontal">
 
         <TextView
-            android:text="Supplier Name"
             style="@style/CategoryStyle"
-            android:padding="8dp"/>
+            android:padding="8dp"
+            android:text="@string/supplier_name" />
 
         <RelativeLayout
-            android:layout_height="wrap_content"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             android:paddingLeft="4dp">
 
             <EditText
                 android:id="@+id/edit_inventory_supplier_name"
-                android:hint="Supplier Name"
-                android:inputType="textCapWords"
-                style="@style/EditorFieldStyle" />
+                style="@style/EditorFieldStyle"
+                android:hint="@string/supplier_name"
+                android:inputType="textCapWords" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -134,28 +140,31 @@
         android:orientation="horizontal">
 
         <TextView
-            android:text="Supplier Phone Number"
             style="@style/CategoryStyle"
-            android:padding="8dp"/>
+            android:padding="8dp"
+            android:text="@string/supplier_phone_number" />
 
         <RelativeLayout
-            android:layout_height="wrap_content"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:paddingLeft="4dp">
+            android:paddingLeft="4dp"
+            android:paddingStart="4dp">
 
             <EditText
                 android:id="@+id/edit_inventory_supplier_phone_number"
-                android:hint="Phone Number"
-                android:inputType="phone"
-                style="@style/EditorFieldStyle" />
+                style="@style/EditorFieldStyle"
+                android:hint="@string/phone_number"
+                android:inputType="phone" />
 
             <ImageButton
+                android:id="@+id/dialer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_dialer_sip"
-                android:id="@+id/dialer"/>
+                android:contentDescription="@string/dial_number"
+                android:src="@drawable/ic_dialer_sip" />
 
         </RelativeLayout>
     </LinearLayout>
