@@ -49,6 +49,7 @@
     <string name="price_input">Price</string>
     <string name="editor_activity_title_new_inventory">Add a New Inventory</string>
     <string name="editor_activity_title_edit_inventory">Edit Inventory</string>
+    <string name="sale">Sale</string>
 
     <!-- New Edit Catalog String-->
 </resources>
