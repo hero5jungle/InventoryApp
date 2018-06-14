@@ -35,4 +35,6 @@
     <string name="gender_male">Male</string>
     <string name="gender_female">Female</string>
     <string name="unknown_breed">Unknown breed</string>
+
+    <!-- New Edit Catalog String-->
 </resources>

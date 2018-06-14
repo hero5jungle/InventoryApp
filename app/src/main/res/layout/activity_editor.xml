@@ -7,37 +7,138 @@
     android:orientation="vertical"
     tools:context=".EditorActivity">
 
-
     <LinearLayout
-        android:id="@+id/container_measurement"
+        android:id="@+id/container_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <!-- Label -->
         <TextView
-            android:text="@string/category_measurement"
-            style="@style/CategoryStyle" />
+            android:text="Product Name"
+            style="@style/CategoryStyle"
+            android:padding="8dp"/>
 
-        <!-- Input fields -->
         <RelativeLayout
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:paddingLeft="4dp">
 
-            <!-- Weight field -->
             <EditText
-                android:id="@+id/edit_pet_weight"
-                android:hint="@string/hint_pet_weight"
+                android:id="@+id/edit_inventory_name"
+                android:hint="Name"
+                android:inputType="textCapWords"
+                style="@style/EditorFieldStyle" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="Product Price"
+            style="@style/CategoryStyle"
+            android:padding="8dp"/>
+
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="4dp">
+
+            <EditText
+                android:id="@+id/edit_inventory_price"
+                android:hint="Price (round number)"
                 android:inputType="number"
                 style="@style/EditorFieldStyle" />
 
-            <!-- Units for weight (kg) -->
             <TextView
-                android:id="@+id/label_weight_units"
-                android:text="@string/unit_pet_weight"
+                android:id="@+id/label_dollar_currency"
+                android:text="dollars"
                 style="@style/EditorUnitsStyle"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="Product Quantity"
+            style="@style/CategoryStyle"
+            android:padding="8dp"/>
+
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="4dp">
+
+            <EditText
+                android:id="@+id/edit_inventory_quantity"
+                android:hint="Quantity"
+                android:inputType="number"
+                style="@style/EditorFieldStyle" />
+
+            <TextView
+                android:id="@+id/label_dollar_currency"
+                android:text="units"
+                style="@style/EditorUnitsStyle"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_supplier_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="Supplier Name"
+            style="@style/CategoryStyle"
+            android:padding="8dp"/>
+
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="4dp">
+
+            <EditText
+                android:id="@+id/edit_inventory_supplier_name"
+                android:hint="Supplier Name"
+                android:inputType="textCapWords"
+                style="@style/EditorFieldStyle" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_supplier_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="Supplier Phone Number"
+            style="@style/CategoryStyle"
+            android:padding="8dp"/>
+
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="4dp">
+
+            <EditText
+                android:id="@+id/edit_inventory_supplier_phone_number"
+                android:hint="Phone Number"
+                android:inputType="phone"
+                style="@style/EditorFieldStyle" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
