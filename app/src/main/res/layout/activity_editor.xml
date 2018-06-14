@@ -85,10 +85,20 @@
                 android:inputType="number"
                 style="@style/EditorFieldStyle" />
 
-            <TextView
-                android:id="@+id/label_qyt_units"
-                android:text="units"
-                style="@style/EditorUnitsStyle"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add"
+                android:layout_toLeftOf="@id/decrement_button"
+                android:id="@+id/increment_button"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" 
+                android:src="@drawable/ic_remove"
+                android:layout_alignParentRight="true"
+                android:id="@+id/decrement_button"/>
+
         </RelativeLayout>
     </LinearLayout>
 
