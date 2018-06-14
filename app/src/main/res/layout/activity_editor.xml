@@ -86,7 +86,7 @@
                 style="@style/EditorFieldStyle" />
 
             <TextView
-                android:id="@+id/label_dollar_currency"
+                android:id="@+id/label_qyt_units"
                 android:text="units"
                 style="@style/EditorUnitsStyle"/>
         </RelativeLayout>
@@ -139,6 +139,14 @@
                 android:hint="Phone Number"
                 android:inputType="phone"
                 style="@style/EditorFieldStyle" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_dialer_sip"
+                android:id="@+id/dialer"/>
+
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
