@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MainInventoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,9 +17,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ProductDetails"
             android:label="Product Details"
+            android:parentActivityName=".MainInventoryActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainInventoryActivity" />
+        </activity>
+
+        <activity
+            android:name=".EditorActivity"
+            android:label="Add a Pet"
             android:parentActivityName=".MainInventoryActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -29,8 +40,5 @@
             android:name=".data.InventoryProvider"
             android:authorities="com.example.android.inventory"
             android:exported="false" />
-
-        <activity android:name=".EditorActivity"></activity>
     </application>
-
 </manifest>
