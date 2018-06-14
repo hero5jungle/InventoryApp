@@ -90,7 +90,6 @@ public class MainInventoryActivity extends AppCompatActivity implements
 
         // Iterate through all the returned rows in the cursor
         while (cursor.moveToNext()) {
-
             int currentID = cursor.getInt(idColumnIndex);
             String currentName = cursor.getString(nameColumnIndex);
             int currentPrice = cursor.getInt(priceColumnIndex);
