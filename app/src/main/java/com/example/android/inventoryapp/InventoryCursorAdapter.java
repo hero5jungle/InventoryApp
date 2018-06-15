@@ -5,15 +5,10 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
-import android.content.Context;
-import android.database.Cursor;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
+
 import com.example.android.inventoryapp.data.InventoryContract.InventoryEntry;
 
 public class InventoryCursorAdapter extends CursorAdapter {
@@ -32,7 +27,8 @@ public class InventoryCursorAdapter extends CursorAdapter {
         // Find individual views that we want to modify in the list item layout
         TextView nameTextView = view.findViewById(R.id.product_name);
         TextView priceTextView = view.findViewById(R.id.product_price);
-        TextView quantityTextView = view.findViewById(R.id.product_quantity);
+        final TextView quantityTextView = view.findViewById(R.id.product_quantity);
+        Button saleButton = view.findViewById(R.id.sale_button);
 
         // Find the columns of inventory attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_NAME);
@@ -42,11 +38,21 @@ public class InventoryCursorAdapter extends CursorAdapter {
         // Read the inventory attributes from the Cursor for the current inventory
         String inventoryName = cursor.getString(nameColumnIndex);
         int inventoryPrice = cursor.getInt(priceColumnIndex);
-        int inventoryQuantity = cursor.getInt(quantityColumnIndex);
+        final int[] inventoryQuantity = {cursor.getInt(quantityColumnIndex)};
 
         // Update the TextViews with the attributes for the current inventory
         nameTextView.setText(inventoryName);
         priceTextView.setText(Integer.toString(inventoryPrice));
-        quantityTextView.setText(Integer.toString(inventoryQuantity));
+
+
+        // Set listener and logic for the sale button
+        saleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inventoryQuantity[0]--;
+                quantityTextView.setText(Integer.toString(inventoryQuantity[0]));
+            }
+        });
+        quantityTextView.setText(Integer.toString(inventoryQuantity[0]));
     }
 }
