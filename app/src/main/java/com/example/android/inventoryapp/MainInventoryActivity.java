@@ -1,25 +1,7 @@
 package com.example.android.inventoryapp;
 
 import android.app.LoaderManager;
-import android.content.ContentValues;
-import android.content.Intent;
-import android.content.Loader;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import com.example.android.inventoryapp.data.InventoryContract.InventoryEntry;
-import com.example.android.inventoryapp.data.InventoryDbHelper;
-import android.app.LoaderManager;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -28,19 +10,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.android.inventoryapp.data.InventoryContract.InventoryEntry;
+import com.example.android.inventoryapp.data.InventoryDbHelper;
+
 public class MainInventoryActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    private InventoryDbHelper mDbHelper;
     private static final int INVENTORY_LOADER = 0;
     InventoryCursorAdapter mCursorAdapter;
+    private InventoryDbHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
