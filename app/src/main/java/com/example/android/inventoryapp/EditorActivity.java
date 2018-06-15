@@ -1,5 +1,6 @@
 package com.example.android.inventoryapp;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
@@ -7,9 +8,11 @@ import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -18,6 +21,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.android.inventoryapp.data.InventoryContract.InventoryEntry;
@@ -234,16 +238,45 @@ public class EditorActivity extends AppCompatActivity implements
             // Extract out the value from the Cursor for the given column index
             String name = cursor.getString(nameColumnIndex);
             int price = cursor.getInt(priceColumnIndex);
-            int quantity = cursor.getInt(quantityColumnIndex);
+            final int[] quantity = {cursor.getInt(quantityColumnIndex)};
             String supplierName = cursor.getString(supplierNameColumnIndex);
-            int supplierPhone = cursor.getInt(supplierPhoneColumnIndex);
+            final int supplierPhone = cursor.getInt(supplierPhoneColumnIndex);
 
             // Update the views on the screen with the values from the database
             mNameEditText.setText(name);
             mPriceEditText.setText(Integer.toString(price));
-            mQuantityEditText.setText(Integer.toString(quantity));
+            mQuantityEditText.setText(Integer.toString(quantity[0]));
             mSupplierNameEditText.setText(supplierName);
             mSupplierPhoneEditText.setText(Integer.toString(supplierPhone));
+
+            // Find buttons
+            ImageButton incrementButton = findViewById(R.id.increment_button);
+            ImageButton decrementButton = findViewById(R.id.decrement_button);
+            ImageButton callButton = findViewById(R.id.dialer);
+
+            // Set OnClick Listeners
+            incrementButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    quantity[0]++;
+                }
+            });
+            decrementButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    quantity[0]--;
+                }
+            });
+            callButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + supplierPhone));
+                    if (ActivityCompat.checkSelfPermission(EditorActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                    startActivity(intent);
+                }
+            });
         }
     }
 
