@@ -77,7 +77,7 @@ public class EditorActivity extends AppCompatActivity implements
         mSupplierPhoneEditText.setOnTouchListener(mTouchListener);
     }
 
-    private void saveInventory() {
+    private boolean saveInventory() {
         String nameString = mNameEditText.getText().toString().trim();
         String priceString = mPriceEditText.getText().toString().trim();
         String quantityString = mQuantityEditText.getText().toString().trim();
@@ -86,56 +86,58 @@ public class EditorActivity extends AppCompatActivity implements
         // Check for new inventory and for blanks
         if (mCurrentInventoryUri == null &&
                 (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(priceString) ||
-                TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(supplierNameString)
+                        TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(supplierNameString)
                         || TextUtils.isEmpty(supplierPhoneString))) {
             Toast.makeText(this, "Please enter valid information", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // Create a ContentValues
-        ContentValues values = new ContentValues();
-        values.put(InventoryEntry.COLUMN_PRODUCT_NAME, nameString);
-        values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, supplierNameString);
-        values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE_NUMBER, supplierPhoneString);
-        // Validation for price, quantity and phone number
-        int price = 0;
-        int quantity = 0;
-        int phoneNumber = 0;
-
-        if (!TextUtils.isEmpty(priceString)) {
-            price = Integer.parseInt(priceString);
-        }
-        if (!TextUtils.isEmpty(quantityString)) {
-            quantity = Integer.parseInt(quantityString);
-        }
-        if (!TextUtils.isEmpty(supplierPhoneString)) {
-            phoneNumber = Integer.parseInt(supplierPhoneString);
-        }
-
-        values.put(InventoryEntry.COLUMN_PRICE, price);
-        values.put(InventoryEntry.COLUMN_QUANTITY, quantity);
-        values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE_NUMBER, phoneNumber);
-
-        // Determine if this is a new or existing inventory
-        if (mCurrentInventoryUri == null) {
-            Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
-            if (newUri == null) {
-                Toast.makeText(this, getString(R.string.editor_insert_inventory_failed),
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, getString(R.string.editor_insert_inventory_successful),
-                        Toast.LENGTH_SHORT).show();
-            }
+            return false;
         } else {
-            int rowsAffected = getContentResolver().update(mCurrentInventoryUri, values, null, null);
-            if (rowsAffected == 0) {
-                Toast.makeText(this, getString(R.string.editor_update_inventory_failed),
-                        Toast.LENGTH_SHORT).show();
+
+            // Create a ContentValues
+            ContentValues values = new ContentValues();
+            values.put(InventoryEntry.COLUMN_PRODUCT_NAME, nameString);
+            values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, supplierNameString);
+            values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE_NUMBER, supplierPhoneString);
+            // Validation for price, quantity and phone number
+            int price = 0;
+            int quantity = 0;
+            int phoneNumber = 0;
+
+            if (!TextUtils.isEmpty(priceString)) {
+                price = Integer.parseInt(priceString);
+            }
+            if (!TextUtils.isEmpty(quantityString)) {
+                quantity = Integer.parseInt(quantityString);
+            }
+            if (!TextUtils.isEmpty(supplierPhoneString)) {
+                phoneNumber = Integer.parseInt(supplierPhoneString);
+            }
+
+            values.put(InventoryEntry.COLUMN_PRICE, price);
+            values.put(InventoryEntry.COLUMN_QUANTITY, quantity);
+            values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE_NUMBER, phoneNumber);
+
+            // Determine if this is a new or existing inventory
+            if (mCurrentInventoryUri == null) {
+                Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
+                if (newUri == null) {
+                    Toast.makeText(this, getString(R.string.editor_insert_inventory_failed),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, getString(R.string.editor_insert_inventory_successful),
+                            Toast.LENGTH_SHORT).show();
+                }
             } else {
-                Toast.makeText(this, getString(R.string.editor_update_inventory_successful),
-                        Toast.LENGTH_SHORT).show();
+                int rowsAffected = getContentResolver().update(mCurrentInventoryUri, values, null, null);
+                if (rowsAffected == 0) {
+                    Toast.makeText(this, getString(R.string.editor_update_inventory_failed),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, getString(R.string.editor_update_inventory_successful),
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         }
+        return true;
     }
 
     // Inflate menu xml
@@ -162,7 +164,9 @@ public class EditorActivity extends AppCompatActivity implements
         switch (item.getItemId()) {
             case R.id.action_save:
                 saveInventory();
-                finish();
+                if (saveInventory()) {
+                    finish();
+                }
                 return true;
             case R.id.action_delete:
                 showDeleteConfirmationDialog();
