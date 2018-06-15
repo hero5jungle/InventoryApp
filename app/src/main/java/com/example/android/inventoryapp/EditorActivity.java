@@ -91,7 +91,6 @@ public class EditorActivity extends AppCompatActivity implements
             Toast.makeText(this, "Please enter valid information", Toast.LENGTH_SHORT).show();
             return false;
         } else {
-
             // Create a ContentValues
             ContentValues values = new ContentValues();
             values.put(InventoryEntry.COLUMN_PRODUCT_NAME, nameString);
@@ -136,8 +135,8 @@ public class EditorActivity extends AppCompatActivity implements
                             Toast.LENGTH_SHORT).show();
                 }
             }
+            return true;
         }
-        return true;
     }
 
     // Inflate menu xml
@@ -164,7 +163,6 @@ public class EditorActivity extends AppCompatActivity implements
         switch (item.getItemId()) {
             case R.id.action_save:
                 if (saveInventory()) {
-                    saveInventory();
                     finish();
                 } else {
                     saveInventory();
