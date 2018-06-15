@@ -163,9 +163,11 @@ public class EditorActivity extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save:
-                saveInventory();
                 if (saveInventory()) {
+                    saveInventory();
                     finish();
+                } else {
+                    saveInventory();
                 }
                 return true;
             case R.id.action_delete:
