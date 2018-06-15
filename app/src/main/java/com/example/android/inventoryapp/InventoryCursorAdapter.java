@@ -44,11 +44,13 @@ public class InventoryCursorAdapter extends CursorAdapter {
         nameTextView.setText(inventoryName);
         priceTextView.setText(Integer.toString(inventoryPrice));
 
-
         // Set listener and logic for the sale button
         saleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (inventoryQuantity[0] == 0) {
+                    return;
+                }
                 inventoryQuantity[0]--;
                 quantityTextView.setText(Integer.toString(inventoryQuantity[0]));
             }

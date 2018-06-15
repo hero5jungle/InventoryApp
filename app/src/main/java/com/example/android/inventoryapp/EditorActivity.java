@@ -84,10 +84,11 @@ public class EditorActivity extends AppCompatActivity implements
         String supplierNameString = mSupplierNameEditText.getText().toString().trim();
         String supplierPhoneString = mSupplierPhoneEditText.getText().toString().trim();
         // Check for new inventory and for blanks
-        if (mCurrentInventoryUri == null &&
-                TextUtils.isEmpty(nameString) && TextUtils.isEmpty(priceString) &&
-                TextUtils.isEmpty(quantityString) && TextUtils.isEmpty(supplierNameString)
-                && TextUtils.isEmpty(supplierPhoneString)) {
+        if (mCurrentInventoryUri == null ||
+                TextUtils.isEmpty(nameString) || TextUtils.isEmpty(priceString) ||
+                TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(supplierNameString)
+                || TextUtils.isEmpty(supplierPhoneString)) {
+            Toast.makeText(this, "Please enter valid information", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -160,8 +161,12 @@ public class EditorActivity extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save:
-                saveInventory();
-                finish();
+                if (mCurrentInventoryUri != null) {
+                    saveInventory();
+                    finish();
+                } else {
+                    Toast.makeText(this, "Please enter valid information", Toast.LENGTH_SHORT).show();
+                }
                 return true;
             case R.id.action_delete:
                 showDeleteConfirmationDialog();
@@ -259,22 +264,28 @@ public class EditorActivity extends AppCompatActivity implements
                 @Override
                 public void onClick(View v) {
                     quantity[0]++;
+                    mQuantityEditText.setText(Integer.toString(quantity[0]));
                 }
             });
             decrementButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     quantity[0]--;
+                    mQuantityEditText.setText(Integer.toString(quantity[0]));
                 }
             });
             callButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + supplierPhone));
-                    if (ActivityCompat.checkSelfPermission(EditorActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                        return;
-                    }
                     startActivity(intent);
+                    if (ActivityCompat.checkSelfPermission(EditorActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        if (ActivityCompat.shouldShowRequestPermissionRationale(EditorActivity.this, Manifest.permission.CALL_PHONE)) {
+                            Toast.makeText(EditorActivity.this, "Permission is not granted", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(EditorActivity.this, "Request permission", Toast.LENGTH_LONG).show();
+                        }
+                    }
                 }
             });
         }
