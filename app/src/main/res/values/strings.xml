@@ -3,10 +3,10 @@
     <string name="empty_text">Empty list</string>
     <string name="add_more_inventory">Add more inventory</string>
 
-    <!-- Temporary Edit Catalog Text -->
+    <!-- Edit Catalog Text -->
     <string name="action_insert_dummy_data">Insert Dummy Data</string>
-    <string name="action_delete_all_entries">Delete All Inventorys</string>
-    <string name="empty_view_title_text">It\'s a bit lonely here...</string>
+    <string name="action_delete_all_entries">Delete All Inventory</string>
+    <string name="empty_view_title_text">It\'s a bit lonely here…</string>
     <string name="empty_view_subtitle_text">Get started by adding a inventory</string>
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
@@ -50,6 +50,6 @@
     <string name="editor_activity_title_new_inventory">Add a New Inventory</string>
     <string name="editor_activity_title_edit_inventory">Edit Inventory</string>
     <string name="sale">Sale</string>
+    <string name="qyt_1">QYT - 1</string>
 
-    <!-- New Edit Catalog String-->
 </resources>
