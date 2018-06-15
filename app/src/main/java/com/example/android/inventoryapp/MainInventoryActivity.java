@@ -66,14 +66,6 @@ public class MainInventoryActivity extends AppCompatActivity implements
         mCursorAdapter = new InventoryCursorAdapter(this, null);
         inventoryListView.setAdapter(mCursorAdapter);
 
-        // Set Sale Button
-        final Button saleButton = findViewById(R.id.sale_button);
-        saleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
-
         // Setup the item click listener
         inventoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
