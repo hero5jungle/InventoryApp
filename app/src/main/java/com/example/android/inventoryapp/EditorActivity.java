@@ -84,10 +84,10 @@ public class EditorActivity extends AppCompatActivity implements
         String supplierNameString = mSupplierNameEditText.getText().toString().trim();
         String supplierPhoneString = mSupplierPhoneEditText.getText().toString().trim();
         // Check for new inventory and for blanks
-        if (mCurrentInventoryUri == null ||
-                TextUtils.isEmpty(nameString) || TextUtils.isEmpty(priceString) ||
+        if (mCurrentInventoryUri == null &&
+                (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(priceString) ||
                 TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(supplierNameString)
-                || TextUtils.isEmpty(supplierPhoneString)) {
+                        || TextUtils.isEmpty(supplierPhoneString))) {
             Toast.makeText(this, "Please enter valid information", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -161,12 +161,8 @@ public class EditorActivity extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save:
-                if (mCurrentInventoryUri != null) {
-                    saveInventory();
-                    finish();
-                } else {
-                    Toast.makeText(this, "Please enter valid information", Toast.LENGTH_SHORT).show();
-                }
+                saveInventory();
+                finish();
                 return true;
             case R.id.action_delete:
                 showDeleteConfirmationDialog();
