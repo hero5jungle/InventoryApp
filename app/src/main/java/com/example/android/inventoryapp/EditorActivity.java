@@ -21,7 +21,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.android.inventoryapp.data.InventoryContract.InventoryEntry;
@@ -68,6 +70,10 @@ public class EditorActivity extends AppCompatActivity implements
         mQuantityEditText = findViewById(R.id.edit_inventory_quantity);
         mSupplierNameEditText = findViewById(R.id.edit_inventory_supplier_name);
         mSupplierPhoneEditText = findViewById(R.id.edit_inventory_supplier_phone_number);
+        // Find buttons
+        ImageButton incrementButton = findViewById(R.id.increment_button);
+        ImageButton decrementButton = findViewById(R.id.decrement_button);
+        ImageButton callButton = findViewById(R.id.dialer);
         // Set listeners
         mNameEditText.setOnTouchListener(mTouchListener);
         mPriceEditText.setOnTouchListener(mTouchListener);
