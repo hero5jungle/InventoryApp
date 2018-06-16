@@ -30,6 +30,7 @@ public class EditorActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int EXISTING_INVENTORY_LOADER = 0;
+    private static final int PERMISSION_REQUEST_CODE = 1;
     private Uri mCurrentInventoryUri;
     private EditText mNameEditText;
     private EditText mPriceEditText;
@@ -37,7 +38,6 @@ public class EditorActivity extends AppCompatActivity implements
     private EditText mSupplierNameEditText;
     private EditText mSupplierPhoneEditText;
     private boolean mInventoryHasChanged = false;
-
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -277,17 +277,37 @@ public class EditorActivity extends AppCompatActivity implements
             callButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + supplierPhone));
-                    startActivity(intent);
-                    if (ActivityCompat.checkSelfPermission(EditorActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                        if (ActivityCompat.shouldShowRequestPermissionRationale(EditorActivity.this, Manifest.permission.CALL_PHONE)) {
-                            Toast.makeText(EditorActivity.this, "Permission is not granted", Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(EditorActivity.this, "Request permission", Toast.LENGTH_LONG).show();
-                        }
-                    }
+                    makeCall(supplierPhone);
                 }
             });
+        }
+    }
+
+    public void makeCall(int s) {
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:" + s));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            requestForCallPermission();
+        } else {
+            startActivity(intent);
+        }
+    }
+
+    public void requestForCallPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CALL_PHONE)) {
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    makeCall(100);
+                }
+                break;
         }
     }
 
