@@ -4,8 +4,6 @@
     <string name="add_more_inventory">Add more inventory</string>
 
     <!-- Edit Catalog Text -->
-    <string name="action_insert_dummy_data">Insert Dummy Data</string>
-    <string name="action_delete_all_entries">Delete All Inventory</string>
     <string name="empty_view_title_text">It\'s a bit lonely here…</string>
     <string name="empty_view_subtitle_text">Get started by adding a inventory</string>
     <string name="action_save">Save</string>
