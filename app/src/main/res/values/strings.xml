@@ -49,5 +49,7 @@
     <string name="editor_activity_title_edit_inventory">Edit Inventory</string>
     <string name="sale">Sale</string>
     <string name="qyt_1">QYT - 1</string>
+    <string name="empty_inventory_list">Empty Inventory List</string>
+    <string name="click_bottom_right_icon_to_add_more_inventory">Click bottom right icon to add more inventory</string>
 
 </resources>

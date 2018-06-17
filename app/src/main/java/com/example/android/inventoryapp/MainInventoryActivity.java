@@ -38,8 +38,8 @@ public class MainInventoryActivity extends AppCompatActivity implements
         });
 
         // Set empty view
-        ListView inventoryListView = findViewById(R.id.list);
-        View emptyView = findViewById(R.id.empty_view);
+        ListView inventoryListView = findViewById(android.R.id.list);
+        View emptyView = findViewById(android.R.id.empty);
         inventoryListView.setEmptyView(emptyView);
 
         // Set cursorAdapter to inventory list
