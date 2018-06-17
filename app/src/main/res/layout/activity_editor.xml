@@ -28,7 +28,9 @@
                 android:id="@+id/edit_inventory_name"
                 style="@style/EditorFieldStyle"
                 android:hint="@string/name"
-                android:inputType="textCapWords" />
+                android:inputType="textCapWords"
+                android:maxLength="20"
+                android:maxLines="2" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -54,7 +56,9 @@
                 android:id="@+id/edit_inventory_price"
                 style="@style/EditorFieldStyle"
                 android:hint="@string/price_round_number"
-                android:inputType="number" />
+                android:inputType="number"
+                android:maxLength="7"
+                android:maxLines="1" />
 
             <TextView
                 android:id="@+id/label_dollar_currency"
@@ -85,7 +89,9 @@
                 android:id="@+id/edit_inventory_quantity"
                 style="@style/EditorFieldStyle"
                 android:hint="@string/quantity"
-                android:inputType="number" />
+                android:inputType="number"
+                android:maxLength="5"
+                android:maxLines="1" />
 
             <ImageButton
                 android:id="@+id/increment_button"
@@ -93,8 +99,8 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/decrement_button"
                 android:layout_toStartOf="@id/decrement_button"
-                android:src="@drawable/ic_add"
-                android:contentDescription="@string/increase_qyt_by_1" />
+                android:contentDescription="@string/increase_qyt_by_1"
+                android:src="@drawable/ic_add" />
 
             <ImageButton
                 android:id="@+id/decrement_button"
@@ -102,8 +108,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_remove"
-                android:contentDescription="@string/subtract_qyt_by_1" />
+                android:contentDescription="@string/subtract_qyt_by_1"
+                android:src="@drawable/ic_remove" />
 
         </RelativeLayout>
     </LinearLayout>
@@ -129,7 +135,9 @@
                 android:id="@+id/edit_inventory_supplier_name"
                 style="@style/EditorFieldStyle"
                 android:hint="@string/supplier_name"
-                android:inputType="textCapWords" />
+                android:inputType="textCapWords"
+                android:maxLength="20"
+                android:maxLines="2" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -155,7 +163,9 @@
                 android:id="@+id/edit_inventory_supplier_phone_number"
                 style="@style/EditorFieldStyle"
                 android:hint="@string/phone_number"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:maxLength="12"
+                android:maxLines="1" />
 
             <ImageButton
                 android:id="@+id/dialer"

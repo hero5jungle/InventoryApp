@@ -1,11 +1,6 @@
 <resources>
     <string name="app_name">Inventory App</string>
-    <string name="empty_text">Empty list</string>
-    <string name="add_more_inventory">Add more inventory</string>
-
     <!-- Edit Catalog Text -->
-    <string name="empty_view_title_text">It\'s a bit lonely here…</string>
-    <string name="empty_view_subtitle_text">Get started by adding a inventory</string>
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
     <string name="editor_insert_inventory_successful">Inventory saved</string>
@@ -20,17 +15,6 @@
     <string name="delete_dialog_msg">Delete this inventory?</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
-    <string name="category_overview">Overview</string>
-    <string name="category_gender">Gender</string>
-    <string name="category_measurement">Measurement</string>
-    <string name="hint_inventory_name">Name</string>
-    <string name="hint_inventory_breed">Breed</string>
-    <string name="hint_inventory_weight">Weight</string>
-    <string name="unit_inventory_weight">kg</string>
-    <string name="gender_unknown">Unknown</string>
-    <string name="gender_male">Male</string>
-    <string name="gender_female">Female</string>
-    <string name="unknown_breed">Unknown breed</string>
     <string name="product_name">Product Name</string>
     <string name="name">Name</string>
     <string name="product_price">Product Price</string>
@@ -44,7 +28,6 @@
     <string name="supplier_phone_number">Supplier Phone Number</string>
     <string name="phone_number">Phone Number</string>
     <string name="dial_number">Dial Number</string>
-    <string name="price_input">Price</string>
     <string name="editor_activity_title_new_inventory">Add a New Inventory</string>
     <string name="editor_activity_title_edit_inventory">Edit Inventory</string>
     <string name="sale">Sale</string>
