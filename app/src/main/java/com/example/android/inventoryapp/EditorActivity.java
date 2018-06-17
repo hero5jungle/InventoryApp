@@ -263,6 +263,9 @@ public class EditorActivity extends AppCompatActivity implements
             incrementButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (quantity[0] > 1000000) {
+                        return;
+                    }
                     quantity[0]++;
                     mQuantityEditText.setText(Integer.toString(quantity[0]));
                 }
@@ -270,6 +273,9 @@ public class EditorActivity extends AppCompatActivity implements
             decrementButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (quantity[0] == 0) {
+                        return;
+                    }
                     quantity[0]--;
                     mQuantityEditText.setText(Integer.toString(quantity[0]));
                 }
