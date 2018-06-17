@@ -26,7 +26,7 @@ public class InventoryCursorAdapter extends CursorAdapter {
     }
 
     @Override
-    public void bindView(View view, final Context context, Cursor cursor) {
+    public void bindView(View view, final Context context, final Cursor cursor) {
         // Find individual views that we want to modify in the list item layout
         TextView nameTextView = view.findViewById(R.id.product_name);
         TextView priceTextView = view.findViewById(R.id.product_price);
@@ -34,11 +34,14 @@ public class InventoryCursorAdapter extends CursorAdapter {
         Button saleButton = view.findViewById(R.id.sale_button);
 
         // Find the columns of inventory attributes that we're interested in
+        int idColumnIndex = cursor.getColumnIndex(InventoryEntry._ID);
         int nameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_NAME);
         int priceColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRICE);
         int quantityColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_QUANTITY);
 
         // Read the inventory attributes from the Cursor for the current inventory
+        final int inventoryId = cursor.getInt(idColumnIndex);
+        final String[] whereVal = {Long.toString(inventoryId)};
         String inventoryName = cursor.getString(nameColumnIndex);
         int inventoryPrice = cursor.getInt(priceColumnIndex);
         final int[] inventoryQuantity = {cursor.getInt(quantityColumnIndex)};
@@ -60,7 +63,7 @@ public class InventoryCursorAdapter extends CursorAdapter {
                 ContentResolver cr = context.getContentResolver();
                 ContentValues values = new ContentValues();
                 values.put(InventoryEntry.COLUMN_QUANTITY, inventoryQuantity[0]);
-                cr.update(InventoryEntry.CONTENT_URI, values, null, null);
+                cr.update(InventoryEntry.CONTENT_URI, values, InventoryEntry._ID + "=?", whereVal);
                 Toast.makeText(context.getApplicationContext(), "Congrats, You made a sale!", Toast.LENGTH_SHORT).show();
             }
         });
