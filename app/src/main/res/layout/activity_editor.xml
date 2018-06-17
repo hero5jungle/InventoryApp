@@ -29,7 +29,7 @@
                 style="@style/EditorFieldStyle"
                 android:hint="@string/name"
                 android:inputType="textCapWords"
-                android:maxLength="20"
+                android:maxLength="30"
                 android:maxLines="2" />
         </RelativeLayout>
     </LinearLayout>
@@ -136,7 +136,7 @@
                 style="@style/EditorFieldStyle"
                 android:hint="@string/supplier_name"
                 android:inputType="textCapWords"
-                android:maxLength="20"
+                android:maxLength="30"
                 android:maxLines="2" />
         </RelativeLayout>
     </LinearLayout>
